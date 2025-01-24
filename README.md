@@ -22,9 +22,9 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 **Goals:** Set up the development environment, finalize requirements, and plan the project.
 
 - **Week 1**:
-  - [ ] Finalize requirements and features.
+  - [x] Finalize requirements and features.
   - [ ] Define folder structure and tools.
-  - [ ] Set up GitHub repository with README.
+  - [x] Set up GitHub repository with README.
 
 - **Week 2**:
   - [ ] Set up frontend project (React).
