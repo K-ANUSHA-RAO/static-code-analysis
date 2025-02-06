@@ -23,13 +23,13 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 
 - **Week 1**:
   - [x] Finalize requirements and features.
-  - [ ] Define folder structure and tools.
+  - [x] Define folder structure and tools.
   - [x] Set up GitHub repository with README.
 
 - **Week 2**:
-  - [ ] Set up frontend project (React).
-  - [ ] Set up backend project (Flask).
-  - [ ] Create initial wireframes (Figma/Adobe).
+  - [x] Set up frontend project (React).
+  - [x] Set up backend project (Flask).
+  - [x] Create the synopsis and do Litrature Survey.
 
 ---
 
