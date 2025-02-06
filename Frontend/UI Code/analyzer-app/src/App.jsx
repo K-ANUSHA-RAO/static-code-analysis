@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
