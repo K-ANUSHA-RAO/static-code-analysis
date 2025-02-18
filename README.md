@@ -37,9 +37,10 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 **Goals:** Develop the file upload functionality and basic APIs.
 
 - **Week 3**:
-  - [ ] Build file upload UI.
+  - [x] Build file upload UI.
   - [ ] Develop backend API for file upload (`/upload` endpoint).
   - [ ] Begin connecting the frontend with backend APIs.
+  - [ ] Prepare Report and PPT for Mid Presentation
 
 - **Week 4**:
   - [ ] Develop scanning logic for Python code.
