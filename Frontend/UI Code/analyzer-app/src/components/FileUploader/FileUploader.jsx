@@ -1,3 +1,17 @@
+/**
+ * FileUploader Component
+ * 
+ * Author: K Anusha Rao
+ * Description: This component allows users to upload files by dragging and dropping or selecting files. 
+ * It displays a list of selected files with their sizes and offers an option to remove them before uploading.
+ * It supports multiple file uploads and validates the file types to accept only `.py` and `.txt` files.
+ * 
+ * Features:
+ * - Drag & drop functionality using react-dropzone
+ * - Displays selected file list with size
+ * - Option to remove files from the list
+ * - Upload button to trigger file upload action
+ */
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Box, Button, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
@@ -6,6 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const FileUploader = ({ onFileUpload }) => {
   const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     setFiles(acceptedFiles);
@@ -22,6 +37,40 @@ const FileUploader = ({ onFileUpload }) => {
 
   const handleRemove = (fileToRemove) => {
     setFiles(files.filter(file => file !== fileToRemove));
+  };
+
+  const handleFileUpload = async () => {
+    if (files.length === 0) {
+      alert("Please select files before uploading.");
+      return;
+    }
+    setUploading(true);
+
+    const formData = new FormData();
+    files.forEach(file => {
+      formData.append('file', file);
+    });
+
+    try {
+      const response = await fetch("http://localhost:8000/upload/", {
+        method: "POST",
+        body: formData,
+        mode: 'cors',
+      });
+      console.log("response",response)
+      const result = await response.json();
+      console.log(result)
+      if (response.ok) {
+        alert(`Files uploaded successfully: ${result.file_path}`);
+      } else {
+        alert(`Error: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Failed to upload files.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -50,11 +99,18 @@ const FileUploader = ({ onFileUpload }) => {
         </List>
       )}
 
-      <Button variant="contained" sx={{ mt: 2 }} onClick={() => document.querySelector('input[type="file"]').click()}>
-        Select Files
-      </Button>
+      <Box sx={{ mt: 2 }}>
+        <Button variant="contained" sx={{ mr: 2 }} onClick={handleFileUpload} disabled={uploading}>
+          {uploading ? "Uploading..." : "Upload Files"}
+        </Button>
+
+        <Button variant="contained" sx={{ mr: 2 }} onClick={() => document.querySelector('input[type="file"]').click()}>
+          Select Files
+        </Button>
+      </Box>
     </Box>
   );
 };
 
 export default FileUploader;
+
