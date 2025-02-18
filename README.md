@@ -38,8 +38,8 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 
 - **Week 3**:
   - [x] Build file upload UI.
-  - [ ] Develop backend API for file upload (`/upload` endpoint).
-  - [ ] Begin connecting the frontend with backend APIs.
+  - [x] Develop backend API for file upload (`/upload` endpoint).
+  - [x] Begin connecting the frontend with backend APIs.
   - [ ] Prepare Report and PPT for Mid Presentation
 
 - **Week 4**:
