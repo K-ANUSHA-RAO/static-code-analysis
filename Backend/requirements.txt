@@ -1,5 +1,5 @@
 radon
-semgrep
 pyup
 reportlab
-sqlite3
+fastapi
+uvicorn

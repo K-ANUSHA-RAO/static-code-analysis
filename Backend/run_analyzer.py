@@ -1,37 +1,34 @@
-import sys
-from input_handler.input_handler import get_input_files
-from analyzer import lexer, syntax_analyzer, semantic_checker, security_checker, quality_checker, dependency_checker
-from database.db_operations import initialize_db
-from report.report_generator import generate_pdf_report
+"""
+Author: K Anusha Rao
+Date: 18-02-2025
+Description: This FastAPI application handles file uploads and integrates with a frontend running on port 3000.
+It allows users to upload files, which are stored with a unique timestamp-based filename.
+"""
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from input_handler.input_handler import save_uploaded_file
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python run_analyzer.py <file_or_directory>")
-        sys.exit(1)
+app = FastAPI()
 
-    initialize_db()
-    target = sys.argv[1]
-    files = get_input_files(target)
-    results = []
+# Enable CORS for frontend integration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Change to specific frontend domain in production
+    allow_credentials=True,
+    allow_methods=["*"], # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"], # Allows all headers for CORS requests
+)
 
-    for file in files:
-        print(f"\nAnalyzing {file}...")
-        tokens = lexer.tokenize(file)
-        ast = syntax_analyzer.parse(tokens)
-        complexity_report = quality_checker.check_code_complexity(file)
-        security_report = security_checker.scan_security(file)
-        dependency_report = dependency_checker.check_dependencies()
+@app.post("/upload/")
+async def upload_file(file: UploadFile = File(...)):
+    """
+    Endpoint to handle file uploads.
 
-        result = {
-            "file": file,
-            "complexity_report": complexity_report,
-            "security_report": security_report,
-            "dependency_report": dependency_report
-        }
-        results.append(result)
+    Args:
+        file (UploadFile): The uploaded file from the client.
 
-    generate_pdf_report(results)
-    print("Analysis complete. Report generated.")
-
-if __name__ == "__main__":
-    main()
+    Returns:
+        dict: A message indicating success and the saved file path.
+    """
+    file_path = save_uploaded_file(file) # Save file with a unique name
+    return {"message": "File uploaded successfully", "file_path": file_path}
