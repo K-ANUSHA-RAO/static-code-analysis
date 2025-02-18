@@ -16,7 +16,7 @@ const FileUploader = ({ onFileUpload }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: '.png,.jpg,.jpeg,.pdf,.txt', // Customize accepted file types
+    accept: '.py,.txt',
     multiple: true,
   });
 
