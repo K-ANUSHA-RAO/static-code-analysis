@@ -8,9 +8,9 @@ const Dashboard = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold">Dashboard</h2>
+      <h2 className="text-2xl font-semibold" style={{paddingLeft: "40px"}}>Dashboard</h2>
       <FileUploader onFileUpload={handleFileUpload} />
-      <p>Overview of analysis results.</p>
+      <p style={{paddingLeft: "40px"}}>Overview of analysis results.</p>
     </div>
   );
 };

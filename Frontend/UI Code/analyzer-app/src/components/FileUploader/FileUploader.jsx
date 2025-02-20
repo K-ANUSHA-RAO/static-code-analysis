@@ -73,6 +73,13 @@ const FileUploader = ({ onFileUpload }) => {
     }
   };
 
+  const handleFileSelectButton = () => {
+    const fileInput = document.querySelector('input[type="file"]');
+      if (fileInput) {
+        fileInput.value = ""; // Reset input to allow re-selection
+        fileInput.click();
+      }
+  };
   return (
     <Box sx={{ 
       p: 3, border: '2px dashed #1976d2', borderRadius: 2, textAlign: 'center',
@@ -104,9 +111,14 @@ const FileUploader = ({ onFileUpload }) => {
           {uploading ? "Uploading..." : "Upload Files"}
         </Button>
 
-        <Button variant="contained" sx={{ mr: 2 }} onClick={() => document.querySelector('input[type="file"]').click()}>
+        <Button
+          variant="contained"
+          sx={{ mr: 2 }}
+          onClick={() => handleFileSelectButton()}
+        >
           Select Files
         </Button>
+
       </Box>
     </Box>
   );
