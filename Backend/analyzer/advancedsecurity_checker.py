@@ -1,12 +1,26 @@
-def scan(file):
-    """Scans the file for security vulnerabilities like eval(), SQLi, and XSS."""
-    vulnerabilities = []
-    with open(file, 'r') as f:
-        content = f.read()
-    if "eval(" in content:
-        vulnerabilities.append("Use of eval() detected (potential code injection).")
-    if "exec(" in content:
-        vulnerabilities.append("Use of exec() detected (potential code injection).")
-    if "SELECT" in content and ("input(" in content or "raw_input(" in content):
-        vulnerabilities.append("Potential SQL injection risk detected.")
-    return vulnerabilities
+# advancedsecurity_checker.py
+
+class AdvancedSecurityChecker:
+    def __init__(self, code):
+        self.code = code
+        self.errors = []
+
+    def check(self):
+        """ Perform advanced security checks on the code. """
+        self.check_for_hardcoded_secrets()
+        self.check_for_insecure_functions()
+        return self.errors
+
+    def check_for_hardcoded_secrets(self):
+        """ Check for hardcoded secrets like passwords or API keys. """
+        # Example: Look for hardcoded passwords or keys
+        if "password" in self.code or "API_KEY" in self.code:
+            self.errors.append("Potential hardcoded secrets found.")
+
+    def check_for_insecure_functions(self):
+        """ Check for usage of insecure functions. """
+        insecure_functions = ['eval', 'exec', 'os.system']
+        for func in insecure_functions:
+            if func in self.code:
+                self.errors.append(f"Usage of insecure function: {func}")
+
