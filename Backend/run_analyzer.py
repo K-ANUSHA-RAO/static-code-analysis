@@ -7,6 +7,7 @@ It allows users to upload files, which are stored with a unique timestamp-based 
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from input_handler.input_handler import save_uploaded_file
+from analyzer.analyze import analyze_file
 
 app = FastAPI()
 
@@ -30,5 +31,11 @@ async def upload_file(file: UploadFile = File(...)):
     Returns:
         dict: A message indicating success and the saved file path.
     """
+    
     file_path = save_uploaded_file(file) # Save file with a unique name
-    return {"message": "File uploaded successfully", "file_path": file_path}
+    analysis_result = analyze_file(file_path)  # Analyze the uploaded file
+    return {
+        "message": "File uploaded successfully",
+        "file_path": file_path,
+        "analysis_result": analysis_result
+    }
