@@ -40,11 +40,11 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
   - [x] Build file upload UI.
   - [x] Develop backend API for file upload (`/upload` endpoint).
   - [x] Begin connecting the frontend with backend APIs.
-  - [ ] Prepare Report and PPT for Mid Presentation
+  - [x] Prepare Report and PPT for Mid Presentation
 
 - **Week 4**:
-  - [ ] Develop scanning logic for Python code.
-  - [ ] Implement basic result display in the UI.
+  - [x] Develop scanning logic for Python code.
+  - [x] Implement basic result display in the UI.
   - [ ] Create a mock API for report generation.
 
 ---
