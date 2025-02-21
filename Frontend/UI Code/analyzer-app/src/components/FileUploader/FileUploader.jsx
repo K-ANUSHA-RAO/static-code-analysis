@@ -18,7 +18,7 @@ import { Box, Button, Typography, List, ListItem, ListItemText, IconButton } fro
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const FileUploader = ({ onFileUpload }) => {
+const FileUploader = ({ onFileUpload, analysisResult, setAnalysisResult }) => {
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
@@ -59,6 +59,7 @@ const FileUploader = ({ onFileUpload }) => {
       });
       console.log("response",response)
       const result = await response.json();
+      setAnalysisResult(result);
       console.log(result)
       if (response.ok) {
         alert(`Files uploaded successfully: ${result.file_path}`);
@@ -121,6 +122,7 @@ const FileUploader = ({ onFileUpload }) => {
 
       </Box>
     </Box>
+    
   );
 };
 
