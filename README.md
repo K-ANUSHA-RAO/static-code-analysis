@@ -45,7 +45,7 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 - **Week 4**:
   - [x] Develop scanning logic for Python code.
   - [x] Implement basic result display in the UI.
-  - [ ] Create a mock API for report generation.
+  - [x] Create a mock API for report generation.
 
 ---
 
@@ -55,12 +55,12 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 - **Week 5**:
   - [ ] Expand scanning rules for security vulnerabilities (e.g., SQLi, XSS).
   - [ ] Implement validation and sanitization for file uploads.
-  - [ ] Add responsive design elements to the UI.
+  - [x] Add responsive design elements to the UI.
 
 - **Week 6**:
   - [ ] Create detailed API for generating text-based reports.
-  - [ ] Build a dynamic results table in React.
-  - [ ] Ensure proper integration between UI and backend.
+  - [x] Build a dynamic results table in React.
+  - [x] Ensure proper integration between UI and backend.
 
 ---
 
