@@ -3,10 +3,10 @@ from analyzer.lexer import Lexer
 from analyzer.syntax_analyzer import SyntaxAnalyzer
 from analyzer.semantic_checker import SemanticChecker
 from analyzer.advancedsecurity_checker import AdvancedSecurityChecker
-# from analyzer.security_checker import SecurityChecker
-# from analyzer.dependency_checker import DependencyChecker
-# from analyzer.quality_checker import QualityChecker
-from analyzer.code_complexity_checker import CodeComplexityChecker  # Import complexity checker
+from analyzer.code_complexity_checker import CodeComplexityChecker
+from analyzer.security_checker import SecurityChecker
+from analyzer.dependency_checker import DependencyChecker
+from analyzer.quality_checker import QualityChecker
 
 def analyze_file(file_path):
     """Runs all analysis functions on the uploaded file."""
@@ -15,10 +15,6 @@ def analyze_file(file_path):
 
     with open(file_path, 'r') as file:
         code = file.read()  # Read file content as a string
-
-    # Tokenization & Parsing
-    lexer = Lexer(code)  # Pass the code to the lexer
-    tokens = lexer.tokenize()  # Tokenize the code (make sure this returns a string)
     
     # Syntax analysis
     syntax_analyzer = SyntaxAnalyzer(code)  # Pass the original code (as string)
@@ -32,28 +28,33 @@ def analyze_file(file_path):
     advanced_security_checker = AdvancedSecurityChecker(code)
     advanced_security_errors = advanced_security_checker.check()
     
-    # # Perform general security checks
-    # security_checker = SecurityChecker(code)
-    # security_errors = security_checker.check()
+    # Perform Code Complexity Analysis (Cyclomatic & Halstead)
+    # complexity_checker = CodeComplexityChecker(code)
+    # complexity_results = complexity_checker.analyze()
     
-    #  # Perform general security checks
-    # dependency_checker = DependencyChecker(code)
-    # dependency_errors = dependency_checker.check()
+    # # # Tokenization & Parsing
+    # lexer = Lexer(code)  # Pass the code to the lexer
+    # tokens = lexer.tokenize()  # Tokenize the code (make sure this returns a string)
+    
+    # Perform general security checks
+    security_checker = SecurityChecker(code)
+    security_errors = security_checker.check()
+    
+    # Perform general security checks
+    dependency_checker = DependencyChecker(code)
+    dependency_errors = dependency_checker.check()
 
-    # # Perform code quality checks (PEP8, docstrings, etc.)
+    # Perform code quality checks (PEP8, docstrings, etc.)
     # quality_checker = QualityChecker(code)
     # quality_errors = quality_checker.check()
-    
-    # Perform Code Complexity Analysis (Cyclomatic & Halstead)
-    complexity_checker = CodeComplexityChecker(code)
-    complexity_results = complexity_checker.analyze()
+
 
     return {
         "syntax_tree": syntax_tree,
         "semantic_errors": semantic_errors,  # Errors found in semantic analysis
         "advanced_security_errors": advanced_security_errors,
-        # "security_errors": security_errors,
-        # "dependency_errors": dependency_errors,
+        # "complexity_analysis": complexity_results,  # Added complexity analysis
+        "security_errors": security_errors,
+        "dependency_errors": dependency_errors,
         # "quality_errors": quality_errors,
-        "complexity_analysis": complexity_results  # Added complexity analysis
     }

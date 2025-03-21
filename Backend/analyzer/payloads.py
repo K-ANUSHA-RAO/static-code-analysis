@@ -1,8 +1,11 @@
-PAYLOADS = {
-    "sql_injection": ["' OR '1'='1", "'; DROP TABLE users; --"],
-    "xss": ["<script>alert('XSS')</script>", "<img src='x' onerror='alert(1)'>"]
-}
+# payloads.py
 
-def get_payloads(type):
-    """Returns payloads for the given type (e.g., sql_injection, xss)."""
-    return PAYLOADS.get(type, [])
+class Payloads:
+    def __init__(self):
+        self.payloads = {
+            'sql_injection': "' OR 1=1 --",
+            'xss': "<script>alert('XSS')</script>"
+        }
+
+    def get_payload(self, attack_type):
+        return self.payloads.get(attack_type, None)
