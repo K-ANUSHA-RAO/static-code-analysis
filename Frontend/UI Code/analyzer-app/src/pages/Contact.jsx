@@ -39,6 +39,7 @@ const Contact = () => {
 
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
         <TextField
+          data-testid="name-input"
           fullWidth
           label="Name"
           margin="normal"
@@ -47,6 +48,7 @@ const Contact = () => {
           onChange={(e) => setName(e.target.value)}
         />
         <TextField
+          data-testid="email-input"
           fullWidth
           label="Email"
           margin="normal"
@@ -56,6 +58,7 @@ const Contact = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
+          data-testid="message-input"
           fullWidth
           label="Message"
           multiline
