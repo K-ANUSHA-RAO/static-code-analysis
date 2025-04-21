@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import FileUploader from "../components/FileUploader/FileUploader";
-import {
-  Typography,
-  Box,
-  Paper,
-} from "@mui/material";
+import { Typography, Box, Paper } from "@mui/material";
 import Results from "../components/AnaysisResult/Results";
 
 const Dashboard = () => {
@@ -32,9 +28,7 @@ const Dashboard = () => {
         />
       </Paper>
 
-      <Results
-      analysisResult={analysisResult}
-      />
+      {analysisResult && <Results analysisResult={analysisResult} />}
     </Box>
   );
 };
