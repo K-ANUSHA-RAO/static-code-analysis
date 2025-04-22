@@ -14,7 +14,7 @@ class SyntaxAnalyzer:
             errors.extend(self.check_type_mismatch(tree))
             return errors
         except SyntaxError as e:
-            return [f"Syntax Error: {e.msg} at line {e.lineno}, column {e.offset}"]
+            return [f"Syntax Error at line {e.lineno} : {e.msg}"]
         except Exception as e:
             return [f"Error while analyzing code: {str(e)}"]
 
@@ -33,5 +33,5 @@ class SyntaxAnalyzer:
             if isinstance(node, ast.BinOp):
                 if isinstance(node.left, ast.Constant) and isinstance(node.right, ast.Constant):
                     if isinstance(node.left.value, int) and isinstance(node.right.value, str):
-                        errors.append(f"Type mismatch: int + str at line {node.lineno}")
+                        errors.append(f"Type mismatch at line {node.lineno}: int + str")
         return errors

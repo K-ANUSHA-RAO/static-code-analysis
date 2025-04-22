@@ -54,11 +54,11 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 
 - **Week 5**:
   - [ ] Expand scanning rules for security vulnerabilities (e.g., SQLi, XSS).
-  - [ ] Implement validation and sanitization for file uploads.
+  - [x] Implement validation and sanitization for file uploads.
   - [x] Add responsive design elements to the UI.
 
 - **Week 6**:
-  - [ ] Create detailed API for generating text-based reports.
+  - [x] Generating reports.
   - [x] Build a dynamic results table in React.
   - [x] Ensure proper integration between UI and backend.
 
@@ -69,13 +69,12 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 
 - **Week 7**:
   - [ ] Write unit tests for APIs.
-  - [ ] Test UI components with Jest/React Testing Library.
-  - [ ] Conduct integration testing to verify end-to-end functionality.
+  - [x] Test UI components with Jest/React Testing Library.
+  - [x] Conduct integration testing to verify end-to-end functionality.
 
 - **Week 8**:
-  - [ ] Implement robust error handling in APIs and the frontend.
+  - [x] Implement robust error handling in APIs and the frontend.
   - [ ] Optimize scanning logic for better performance.
-  - [ ] Incorporate user feedback into design and functionality.
 
 ---
 
@@ -83,13 +82,11 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 **Goals:** Add authentication and enhance storage.
 
 - **Week 9**:
-  - [ ] Implement basic authentication (login system with tokens).
-  - [ ] Create database schema for storing scan history (SQLite).
+  - [ ] Create database schema for storing Files.
 
 - **Week 10**:
-  - [ ] Build a scan history page in React.
-  - [ ] Refactor backend and frontend code for maintainability.
-  - [ ] Conduct another round of integration testing.
+  - [X] Refactor backend and frontend code for maintainability.
+  - [X] Conduct another round of integration testing.
 
 ---
 
@@ -98,7 +95,7 @@ This document outlines a 12-week implementation plan for the Static Code Analysi
 
 - **Week 11-12**:
   - [ ] Prepare user documentation and technical specifications.
-  - [ ] Perform final testing and resolve any bugs.
+  - [X] Perform final testing and resolve any bugs.
   - [ ] Conduct a project demo showcasing the tool’s features.
 
 ---

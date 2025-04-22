@@ -20,7 +20,7 @@ class CodeComplexityChecker:
                     "line_number": item.lineno
                 })
 
-            return {"Cyclomatic Complexity": results}
+            return results
         except Exception as e:
             return {"error": f"Error analyzing Cyclomatic Complexity: {str(e)}"}
 

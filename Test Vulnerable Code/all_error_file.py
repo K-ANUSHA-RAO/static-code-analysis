@@ -1,6 +1,7 @@
 import os
 import subprocess
 import pickle
+import requests
 
 api_key = "supersecret123"
 
@@ -18,3 +19,4 @@ with open("data.pkl", "rb") as f:
     data = pickle.load(f)  # Unsafe pickle
 
 undefined_variable = 10  # Semantic issue: Undefined variable
+some_old_package = "version 1.0"  # Outdated package
