@@ -1,14 +1,21 @@
-API_KEY = "12345"  # Hardcoded secret
-password = "mypassword"  # Hardcoded password
 
 import os
-os.system('rm -rf /')  # Dangerous command execution
+import subprocess
+import pickle
 
-eval("print('This is insecure')")  # Insecure eval usage
-exec("print('Exec is risky')")  # Insecure exec usage
+class DummyCursor:
+    def execute(self, query):
+        pass
 
-# Unused variable
-unused_variable = 42
+cursor = DummyCursor()
 
-# Type Mismatch
-a = 5 + "hello"  # This will raise a TypeError
+api_key = "supersecret123"
+
+user_input = input("Enter your name: ")
+print(user_input)  # should trigger XSS
+
+query = "SELECT * FROM users WHERE username = '" + user_input + "'"
+cursor.execute(query)  # should trigger SQLi
+
+with open("file.txt", "rw") as f:
+    f.write("data")
