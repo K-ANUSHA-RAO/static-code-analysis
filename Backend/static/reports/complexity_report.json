@@ -1,0 +1,111 @@
+{
+  "Cyclomatic Complexity": {
+    "Cyclomatic Complexity": [
+      {
+        "function": "sample_function_1",
+        "complexity": 2,
+        "line_number": 1
+      },
+      {
+        "function": "sample_function_2",
+        "complexity": 3,
+        "line_number": 7
+      },
+      {
+        "function": "sample_function_3",
+        "complexity": 3,
+        "line_number": 16
+      }
+    ]
+  },
+  "Halstead Metrics": {
+    "Halstead Metrics": [
+      [
+        3,
+        10,
+        10,
+        20,
+        13,
+        30,
+        37.974168451037094,
+        111.01319154423277,
+        3.0,
+        333.0395746326983,
+        18.50219859070546,
+        0.03700439718141092
+      ],
+      [
+        [
+          "sample_function_1",
+          [
+            3,
+            2,
+            3,
+            6,
+            5,
+            9,
+            6.754887502163469,
+            20.89735285398626,
+            4.5,
+            94.03808784293817,
+            5.224338213496565,
+            0.0069657842846620865
+          ]
+        ],
+        [
+          "sample_function_2",
+          [
+            3,
+            5,
+            5,
+            10,
+            8,
+            15,
+            16.36452797660028,
+            45.0,
+            3.0,
+            135.0,
+            7.5,
+            0.015
+          ]
+        ],
+        [
+          "sample_function_3",
+          [
+            1,
+            3,
+            2,
+            4,
+            4,
+            6,
+            4.754887502163469,
+            12.0,
+            0.6666666666666666,
+            8.0,
+            0.4444444444444444,
+            0.004
+          ]
+        ]
+      ]
+    ]
+  },
+  "Function Complexity": {
+    "Function Complexity": [
+      {
+        "function": "sample_function_1",
+        "complexity": 2,
+        "line_number": 1
+      },
+      {
+        "function": "sample_function_2",
+        "complexity": 3,
+        "line_number": 7
+      },
+      {
+        "function": "sample_function_3",
+        "complexity": 3,
+        "line_number": 16
+      }
+    ]
+  }
+}
