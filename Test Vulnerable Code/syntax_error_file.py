@@ -1,8 +1,8 @@
-def greet(name)
-    print("Hello, " + name)
+# def greet(name)
+#     print("Hello, " + name)
 
-if True
-    print("Condition met")
+# if True
+#     print("Condition met")
 
 a = 10 + "twenty"
 
