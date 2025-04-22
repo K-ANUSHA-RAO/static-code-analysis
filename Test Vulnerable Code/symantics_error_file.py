@@ -1,5 +1,3 @@
-# Sample Python code for testing semantic analysis
-
 x = 10      # Used
 y = 20      # Unused
 z = 30      # Used

@@ -10,7 +10,7 @@ class SecurityChecker:
             tree = ast.parse(self.code)
             self.visit(tree)
         except SyntaxError as e:
-            self.errors.append(f"Syntax Error: {e.msg} at line {e.lineno}")
+            self.errors.append(f"Syntax Error at line {e.lineno}: {e.msg} ")
         return self.errors
 
     def visit(self, node):
@@ -34,21 +34,21 @@ class SecurityChecker:
     def check_for_insecure_calls(self, node):
         insecure_functions = ['eval', 'exec', 'os.system', 'subprocess.call']
         if isinstance(node.func, ast.Name) and node.func.id in insecure_functions:
-            self.errors.append(f"Security Warning: Use of '{node.func.id}' detected at line {node.lineno}.")
+            self.errors.append(f"Security Warning at line {node.lineno}: Use of '{node.func.id}'.")
         if isinstance(node.func, ast.Attribute) and node.func.attr == 'exec':
-            self.errors.append(f"Security Warning: Use of 'exec()' detected at line {node.lineno}.")
+            self.errors.append(f"Security Warning at line {node.lineno}: Use of 'exec()'.")
 
     def check_for_hardcoded_secrets(self, node):
         for target in node.targets:
             if isinstance(target, ast.Name) and any(x in target.id.lower() for x in ['key', 'secret', 'password', 'token']):
                 if isinstance(node.value, ast.Str):
-                    self.errors.append(f"Security Warning: Hardcoded secret '{target.id}' at line {node.lineno}.")
+                    self.errors.append(f"Security Warning at line {node.lineno}: Hardcoded secret '{target.id}'.")
 
     def check_for_insecure_imports(self, node):
         insecure_modules = ['pickle', 'subprocess', 'os']
         for alias in node.names:
             if alias.name in insecure_modules:
-                self.errors.append(f"Security Warning: Insecure import '{alias.name}' at line {node.lineno}.")
+                self.errors.append(f"Security Warning at line {node.lineno}: Insecure import '{alias.name}'.")
 
     def check_for_insecure_file_handling(self, node):
         for item in node.items:
@@ -58,7 +58,7 @@ class SecurityChecker:
                         try:
                             mode = ast.literal_eval(item.context_expr.args[1])
                             if mode not in ['r', 'rb', 'w', 'wb', 'a', 'ab']:
-                                self.errors.append(f"Security Warning: Insecure file mode '{mode}' at line {node.lineno}.")
+                                self.errors.append(f"Security Warning at line {node.lineno}: Insecure file mode '{mode}'.")
                         except:
                             pass
 
@@ -67,12 +67,12 @@ class SecurityChecker:
         if isinstance(node.func, ast.Name) and node.func.id == 'print':
             for arg in node.args:
                 if isinstance(arg, ast.Name) and 'input' in arg.id.lower():
-                    self.errors.append(f"XSS Warning: Potential XSS via unsanitized input at line {node.lineno}.")
+                    self.errors.append(f"XSS Warning at line {node.lineno}: Potential XSS via unsanitized input.")
 
         if isinstance(node.func, ast.Attribute) and node.func.attr in ['write', 'render_template']:
             for arg in node.args:
                 if isinstance(arg, ast.JoinedStr) or isinstance(arg, ast.BinOp):
-                    self.errors.append(f"XSS Warning: Unescaped user input in HTML response at line {node.lineno}.")
+                    self.errors.append(f"XSS Warning at line {node.lineno}: Unescaped user input in HTML response.")
 
     def check_for_sql_injection(self, node):
         if isinstance(node.func, ast.Attribute) and node.func.attr == 'execute':
@@ -80,4 +80,4 @@ class SecurityChecker:
                 arg = node.args[0]
                 # Check for binary operations or joined strings
                 if isinstance(arg, ast.BinOp) or isinstance(arg, ast.JoinedStr):
-                    self.errors.append(f"SQL Injection Warning: Possible unsafe SQL construction at line {node.lineno}. Use parameterized queries.")
+                    self.errors.append(f"SQL Injection Warning at line {node.lineno}: Possible unsafe SQL construction. Use parameterized queries.")
